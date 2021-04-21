@@ -13,7 +13,7 @@ Para usar este projeto e montar api Travel Quote em sua máquina execute apenas 
 
 > - **Baixe o projeto**
 ```cmd
-git clone https://github.com/jeordanecarlosbatista/travel-quote-api.git
+git clone https://github.com/jeordanecarlosbatista/travel-quote.git
 ```
 > - **Monte as imagens**
 ```
