@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Travel Quote
+  description: Server that contains the necessary resourcers for the application of the travel quote
+  termsOfService: http://localhost
+  contact:
+    name: Jeordane Batista
+    email: jeordane.batista@hotmail.com
+  license:
+    name: ""
+    url: http://localhost
+  version: 1.0.0
+servers:
+  - url: http://localhost:{port}/{basePath}
+    description: Development Server
+    variables:
+      port:
+        default: "3000"
+      basePath:
+        default: api/v1
+tags:
+  - name: Login
+  - name: Quote
+  - name: Route
+paths:
+
+  /login:
+    post:
+      tags:
+        - Login
+      summary: Creates token for bearer token access
+      operationId: postLogin    
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref:  "#/components/schemas/loginRequest"
+        required: true
+      responses:
+        201:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/genericObjectResponse"
+                
+  /quote/{from}/{to}:
+    get:
+      tags:
+        - Quote
+      summary: Returns companies
+      operationId: getQuoteFromTo
+      security:
+        - ApiKeyAuth: [] 
+      parameters:
+        - in: path
+          name: from
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: to
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  route:
+                    type: string
+                  price:
+                    type: integer
+        401:
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/genericError" 
+
+  /route:
+    post:
+      tags:
+        - Route
+      summary: create route
+      operationId: postRoute    
+      security:
+        - ApiKeyAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref:  "#/components/schemas/routeRequest"
+        required: true
+      responses:
+        201:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/genericObjectResponse"
+                                                                  
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT   
+  schemas:
+    genericObjectResponse:
+      type: object
+    genericDeleted:
+      type: string      
+    genericUpdated:
+      type: string
+    genericCreated:
+      type: object
+    genericError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        error:
+          type: string
+    loginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string   
+    routeRequest:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string       
+        price:
+          type: integer   

@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  api-prd:
+    container_name: api_travelquote
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production

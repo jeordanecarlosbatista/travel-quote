@@ -1,0 +1,16 @@
+module.exports = {
+  invalidID: 'ID inválido',
+  resourceNotFound: (resource) => `${resource} inexistente`,
+  updateResource: (resource) => `Falha ao atualizar ${resource}, tente novamente.`,
+  deleteResource: (resource) => `Falha ao remover ${resource}, tente novamente.`,
+  resourceExists: (resource) => `Este ${resource} já existe`,
+  internalError: 'Erro inesperado, consulte o suporte técnico.',
+  emailInUse: (email) => `O endereço de e-mail ${email} já está sendo utilizado por outra conta.`,
+  invalidEmail: (email) => `O endereço de e-mail ${email} é inválido.`,
+  minimumPasswordCharacters: (count) => `A senha deve ser com pelo menos ${count} caracteres.`,
+  createUser: 'Falha ao tentar criar o usuário, tente novamente.',
+  invalidCredentials: 'Usuários ou senha inválidos',
+  notAllowedUpdate: (resource) => `Sem permissão para atualização ${resource}.`,
+  notAllowedDelete: (resource) => `Sem permissão para remoção ${resource}.`,
+  failedRemoveResource: (resource) => `Falha ao remover ${resource}`,
+};

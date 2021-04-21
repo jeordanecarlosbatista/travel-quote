@@ -1,0 +1,10 @@
+node_modules
+.eslintrc.json
+.gitignore
+Dockerfile
+package-lock.json
+./src/test
+./src/mocks
+.vscode
+.env.dev
+.env.test
